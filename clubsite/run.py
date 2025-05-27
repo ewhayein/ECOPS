@@ -7,7 +7,7 @@ if __name__ == '__main__':
     # app context 내에서 DB 관련 작업
     with app.app_context():
         from app.models import db, User, Category
-        
+
         db.create_all()
         
         # 기본 카테고리 생성
@@ -34,4 +34,5 @@ if __name__ == '__main__':
             db.session.commit()
             print("관리자 계정이 생성되었습니다. (admin/admin123)")
         
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
